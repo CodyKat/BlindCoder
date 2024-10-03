@@ -13,8 +13,17 @@ const ProblemPage = ({ params }: { params: {id: string } }) => {
     return (
         <div>
             <h1>{problem.title}</h1>
-            <p>{problem.description}</p>
-            <ConsoleInput />
+            <div>
+                <div className="stage-container">
+                    <div className="problem-description">
+                        {problem.description}
+                    </div>
+                    <ConsoleInput />
+                </div>
+                <div className="output-console">
+                    output console
+                </div>
+            </div>
         </div>
     );
 };

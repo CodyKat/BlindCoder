@@ -157,6 +157,8 @@ body {
   flex-direction: column;
   justify-items: center;
   align-items: center;
+  right: 100px;
+  flex: 1;
 }
 
 .console-input .button {
@@ -177,4 +179,33 @@ body {
   margin: 5px auto;
   width: 100%;
   flex: 6;
+}
+
+.stage-container {
+  display: flex;
+}
+
+.problem-description {
+  border: 2px solid #ddd;
+  padding: 20px;
+  margin: 20px;
+  background-color: #000000;
+  font-size: 16px;
+  color: #ffffff;
+  border-radius: 5px;
+  text-align: left;
+  flex: 1;
+}
+
+.output-console {
+  border: 2px solid #ddd;
+  height: 330px;
+  padding: 20px;
+  margin: 20px;
+  background-color: #000000;
+  font-size: 16px;
+  color: #ffffff;
+  border-radius: 5px;
+  text-align: left;
+  overflow: auto;
 }
