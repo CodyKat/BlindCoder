@@ -30,7 +30,11 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Navbar/>
-        {children}
+        <div className="body-container">
+          <div className="ad">Google Ad 1</div>
+          <div className="main-body">{children}</div>
+          <div className="ad">Google Ad 2</div>
+        </div>
       </body>
     </html>
   );

@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #000000;
+  --foreground: #ffffff;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -80,4 +80,101 @@ body {
 .auth-link:hover {
   background-color: #34495e; /* 호버 시 배경색 */
   color: white;
+}
+
+.body-container {
+  margin: 0 auto;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.ad {
+  width: 20%;
+  height: max-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-body {
+  width: 60%;
+  height: max-content;
+  display: inline;
+}
+
+.problemlist-table-container {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.problemlist-table {
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+.problemlist-table th, .problemlist-table td {
+  border: 1px solid #ddd; /* 셀 경계 스타일 */
+  padding: 8px; /* 셀 내 여백 */
+  text-align: left; /* 텍스트 왼쪽 정렬 */
+}
+
+.problemlist-table .id-column {
+  width: 10%;
+}
+
+.problemlist-table .title-column {
+  width: 10%;
+}
+
+.problemlist-table .description-column {
+  width: 40%
+}
+
+.problemlist-table .correct-count {
+  width: 10%;
+}
+
+.problemlist-table .submit {
+  width: 10%;
+}
+
+.problemlist-table .correct-rate {
+  width: 10%;
+}
+
+.problemlist-table .corretc-time-average {
+  width: 10%;
+}
+
+.problemlist-table th {
+  background-color: #444444; /* 헤더 배경색 */
+}
+
+.console-input {
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+}
+
+.console-input .button {
+  text-align: center;
+  border: 1px solid #ddd;
+  justify-items: center;
+  padding: 10px;
+  margin: 5px auto;
+  width: 100%;
+  flex: 1;
+  background-color: #111111;
+}
+
+.console-input .console {
+  text-align: left;
+  border: 2px solid #ddd;
+  padding: 10px;
+  margin: 5px auto;
+  width: 100%;
+  flex: 6;
 }
