@@ -4,9 +4,8 @@ import ConsoleInput from "@/app/component/ConsoleInput";
 import { useState, useEffect } from 'react';
 
 const ProblemPage = ({ params }: { params: { id: string } }) => {
-    // const [data, setData] = useState(null);
-    const [title, setTitle] = useState(''); // title 상태 추가
-    const [description, setDescription] = useState(''); // description 상태 추가
+    const [title, setTitle] = useState('');
+    const [description, setDescription] = useState('');
     const id = params.id;
 
     useEffect(() => {
@@ -15,17 +14,15 @@ const ProblemPage = ({ params }: { params: { id: string } }) => {
             const dataJSON = await response.json();
 
             if (response.ok) {
-                // setData(dataJSON);
-                setTitle(dataJSON.title); // 첫 번째 줄을 title로 설정
-                setDescription(dataJSON.description); // 나머지 줄을 description으로 설정
+                setTitle(dataJSON.title);
+                setDescription(dataJSON.description);
             } else {
-                // setData(null);
-                alert(dataJSON.message); // 에러 메시지 표시
+                alert(dataJSON.message);
             }
         };
 
         fetchProblem();
-    }, [id]); // id가 변경될 때만 호출
+    }, [id]);
 
     return (
         <div>
