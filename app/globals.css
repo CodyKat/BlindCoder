@@ -157,7 +157,6 @@ body {
   flex-direction: column;
   justify-items: center;
   align-items: center;
-  right: 100px;
   flex: 1;
 }
 
@@ -195,6 +194,7 @@ body {
   border-radius: 5px;
   text-align: left;
   flex: 1;
+  white-space: pre-line;
 }
 
 .output-console {
