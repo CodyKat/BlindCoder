@@ -1,0 +1,12 @@
+{
+    "name": "compiler-worker",
+    "version": "1.0.0",
+    "type": "module",
+    "scripts": {
+      "start": "node compilerProcessor.js"
+    },
+    "dependencies": {
+      "ioredis": "^4.28.5"
+    }
+  }
+  

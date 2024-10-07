@@ -1,0 +1,24 @@
+services:
+  redis-server:
+    build: 
+      context: ./containers/redisServer
+    container_name: redis-server
+    image: blindcoder-redis-server
+    ports:
+      - "6379:6379"
+    networks:
+      - my-app-network
+  
+  worker:
+    build:
+      context: ./containers/worker
+    container_name: worker
+    image: blindcoder-worker
+    depends_on:
+      - redis-server
+    networks:
+      - my-app-network
+  
+networks:
+  my-app-network:
+    driver: bridge

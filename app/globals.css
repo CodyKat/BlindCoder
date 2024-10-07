@@ -209,3 +209,24 @@ body {
   text-align: left;
   overflow: auto;
 }
+
+.auth-links a {
+  margin-right: 10px;
+  color: blue;
+  text-decoration: none;
+}
+
+.user-menu span {
+  margin-right: 10px;
+}
+
+.user-menu a {
+  margin-left: 10px;
+  color: green;
+  text-decoration: none;
+}
+
+.user-menu a:hover,
+.auth-links a:hover {
+  text-decoration: underline;
+}

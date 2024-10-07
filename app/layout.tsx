@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Link from "next/link";
+import UserMenu from "./component/UserMenu"
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -50,10 +51,7 @@ function Navbar() {
         <Link href="/problemSet" className="nav-link">Problem Set</Link>
         <Link href="/rankList" className="nav-link">Rank List</Link>
       </div>
-      <div className="auth-links">
-        <Link href="/login" className="auth-link">Login</Link>
-        <Link href="/signUp" className="auth-link">Sign Up</Link>
-      </div>
+      <UserMenu />
     </nav>
   );
 }
