@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 
 const problemsDir = './data/problems';
+const testcasesRootDir = './data/testcases';
 const metadataDir = './data/metadata';
 
 const initDBScriptHeader = `db = db.getSiblingDB('blindcoder')`;
@@ -67,6 +68,48 @@ problemFiles.forEach((file) => {
 
   initScript += `db.problems.insertOne(${JSON.stringify(problemData)});\n`;
 });
+
+const createTestcaseCollection = `
+db.createCollection('testcases');
+
+db.testcases.createIndex({ problemNum: 1 });
+`
+
+initScript += createTestcaseCollection
+
+const testcaseDir = fs.readdirSync(testcasesRootDir);
+
+testcaseDir.forEach((dir) => {
+  const testcaseDirByProblemNum = path.join(testcasesRootDir, dir);
+  const testcaseFiles = fs.readdirSync(testcaseDirByProblemNum);
+  const problemNum = parseInt(dir.toString());
+
+  testcaseFiles.forEach(file => {
+    if (file.startsWith('input')) {
+      const inputFilePath = path.join(testcaseDirByProblemNum, file);
+      const outputFilePath = path.join(testcaseDirByProblemNum, file.replace('input', 'output'));
+      const testcaseNum = file.match(/\d+/);
+
+      if (testcaseNum == null)
+        console.error(`${file} is wrong.. it has to problem number ended`);
+
+      if (fs.existsSync(outputFilePath)) {
+        const input = fs.readFileSync(inputFilePath, 'utf8').trim();
+        const expectedOutput = fs.readFileSync(outputFilePath, 'utf8').trim();
+
+        initScript += `db.testcases.insertOne({
+          problemNum: ${problemNum},
+          testCases: {testcaseNum: ${testcaseNum}, input: "${input}", expectedOutput: "${expectedOutput}"},
+          createdAt: new Date(),
+          updatedAt: new Date()
+        });\n\n`;
+      }
+      else {
+        console.error(`${file} found, but can't find outputfile`);
+      }
+    }
+  });
+})
 
 fs.writeFileSync('init-db.js', initScript);
 console.log('init-db.js 파일이 성공적으로 생성되었습니다.');
