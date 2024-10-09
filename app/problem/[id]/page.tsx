@@ -4,17 +4,19 @@ import ConsoleInput from "@/app/component/ConsoleInput";
 import { useState, useEffect } from 'react';
 
 const ProblemPage = ({ params }: { params: { id: string } }) => {
-    const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('');
+    const [title, setTitle] = useState<String | null>(null);
+    const [summary, setSummary] = useState<String | null>(null);
+    const [description, setDescription] = useState<String | null>(null);
     const id = params.id;
 
     useEffect(() => {
         const fetchProblem = async () => {
-            const response = await fetch(`/api/get-problem/${id}`);
+            const response = await fetch(`/api/problemAlldata/${id}`);
             const dataJSON = await response.json();
 
             if (response.ok) {
                 setTitle(dataJSON.title);
+                setSummary(dataJSON.summary);
                 setDescription(dataJSON.description);
             } else {
                 alert(dataJSON.message);
@@ -26,7 +28,7 @@ const ProblemPage = ({ params }: { params: { id: string } }) => {
 
     return (
         <div>
-            <h1>{title}</h1>
+            <h1>{title} : {summary}</h1>
             <div>
                 <div className="stage-container">
                     <div className="problem-description">

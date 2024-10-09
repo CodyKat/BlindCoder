@@ -119,20 +119,20 @@ body {
   text-align: left; /* 텍스트 왼쪽 정렬 */
 }
 
-.problemlist-table .id-column {
-  width: 10%;
+.problemlist-table .id {
+  width: 5%;
 }
 
-.problemlist-table .title-column {
-  width: 10%;
+.problemlist-table .title {
+  width: 25%;
 }
 
-.problemlist-table .description-column {
+.problemlist-table .summary {
   width: 40%
 }
 
 .problemlist-table .correct-count {
-  width: 10%;
+  width: 5%;
 }
 
 .problemlist-table .submit {
@@ -144,7 +144,7 @@ body {
 }
 
 .problemlist-table .corretc-time-average {
-  width: 10%;
+  width: 5%;
 }
 
 .problemlist-table th {
