@@ -50,6 +50,8 @@ function filterKeyEvents(keyEvents) {
   }
 
 async function processTasks() {
+    console.log(process.env.REDIS_HOST);
+    console.log(process.env.REDIS_PORT);
     while (true) {
         try {
             // Redis 큐에서 데이터 가져오기 (LPOP: FIFO 방식)

@@ -8,6 +8,8 @@ services:
       - "${REDIS_PORT}:6379"
     networks:
       - my-app-network
+    env_file:
+      - .env
   
   worker:
     build:
@@ -18,6 +20,8 @@ services:
       - redis-server
     networks:
       - my-app-network
+    env_file:
+      - .env
 
   mongo-db:
     build:
@@ -34,6 +38,8 @@ services:
       - mongo-data:/data/db
     networks:
       - my-app-network
+    env_file:
+      - .env
   
 networks:
   my-app-network:

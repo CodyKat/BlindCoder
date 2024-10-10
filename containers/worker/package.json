@@ -3,10 +3,10 @@
     "version": "1.0.0",
     "type": "module",
     "scripts": {
-      "start": "node compilerProcessor.js"
+        "start": "node compilerProcessor.js"
     },
     "dependencies": {
-      "ioredis": "^4.28.5"
+        "dotenv": "^16.4.5",
+        "ioredis": "^4.28.5"
     }
-  }
-  
+}

@@ -12,13 +12,16 @@
   "dependencies": {
     "dotenv": "^16.4.5",
     "ioredis": "^5.4.1",
+    "jose": "^5.9.3",
     "jsonwebtoken": "^9.0.2",
+    "jwt-decode": "^4.0.0",
     "mongodb": "^6.9.0",
     "next": "14.2.14",
     "react": "^18",
     "react-dom": "^18"
   },
   "devDependencies": {
+    "@types/jsonwebtoken": "^9.0.7",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

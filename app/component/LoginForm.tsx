@@ -1,20 +1,16 @@
-'use client'
+'use client';
 
 import React, { useState } from 'react';
-import "./SignupForm.css"
-import { SignUpFormData } from '../types/signupFormData';
+import "./LoginForm.css";
 
-const SignUpForm = () => {
-  const [formData, setFormData] = useState<SignUpFormData>({
+const LoginForm = () => {
+  const [formData, setFormData] = useState({
     username: '',
     password: '',
-    organization: '',
-    email: '',
   });
   const [responseMessage, setResponseMessage] = useState('');
 
   const handleChange = (e) => {
-    console.log(e.target.value);
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
@@ -24,7 +20,7 @@ const SignUpForm = () => {
     // API 요청 로직 추가
 
     try {
-        const res = await fetch('/api/register', {
+        const res = await fetch('/api/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -33,17 +29,22 @@ const SignUpForm = () => {
         });
         const data = await res.json();
         setResponseMessage(data.message);
+
+        if (res.ok) {
+            // 로그인 성공 시 JWT를 쿠키에 저장하고 리다이렉션
+            const redirectTo = new URLSearchParams(window.location.search).get('redirectTo') || '/';
+            window.location.href = redirectTo;
+        }
     } catch (error) {
         console.error('Error:', error);
         setResponseMessage('Error submitting form');
-        }
-    };
-    
+    }
+  };
 
   return (
-    <div className="signup-container">
-      <div className="signup-box">
-        <h2>Sign Up</h2>
+    <div className="login-container">
+      <div className="login-box">
+        <h2>Login</h2>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="username">Username</label>
@@ -53,7 +54,6 @@ const SignUpForm = () => {
               name="username"
               value={formData.username}
               onChange={handleChange}
-              placeholder='required'
               required
             />
           </div>
@@ -66,37 +66,11 @@ const SignUpForm = () => {
               name="password"
               value={formData.password}
               onChange={handleChange}
-              placeholder='required'
               required
             />
           </div>
 
-          <div className="form-group">
-            <label htmlFor="organization">School/Company</label>
-            <input
-              type="text"
-              id="organization"
-              name="organization"
-              value={formData.organization}
-              onChange={handleChange}
-              placeholder='optional'
-            />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder='required'
-              required
-            />
-          </div>
-
-          <button type="submit">Sign Up</button>
+          <button type="submit">Login</button>
         </form>
         {responseMessage && <p>{responseMessage}</p>}
       </div>
@@ -104,4 +78,4 @@ const SignUpForm = () => {
   );
 };
 
-export default SignUpForm;
+export default LoginForm;

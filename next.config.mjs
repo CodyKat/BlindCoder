@@ -2,6 +2,7 @@
 const nextConfig = {
     env: {
     },
+    reactStrictMode: false,
 };
 
 export default nextConfig;

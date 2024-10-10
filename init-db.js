@@ -5,6 +5,7 @@ db.users.createIndex({ username: 1 });
 
 db.users.insertOne({
   username: "jaemjeon",
+  password: "pwd",
   email: "jaemjeon@student.42seoul.kr",
   joinedDate: new Date(),
   solvedProblems: [{

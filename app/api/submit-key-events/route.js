@@ -8,7 +8,6 @@ export async function POST(request) {
         // Redis에 배치로 키 이벤트 추가
         const userEventKey = `key-events-queue`; // 큐 이름 설정
         await redis.rpush(userEventKey, JSON.stringify(keyEvents));
-
         return new Response(JSON.stringify({ message: 'Key events successfully queued in Redis. please wait...' }), {
             status: 200,
             headers: { 'Content-Type': 'application/json' }, // JSON 응답을 위한 헤더 추가
