@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-const KeyEventCapture = () => {
+const KeyEventCapture = ({ language }) => {
     const [keyEvents, setKeyEvents] = useState([]);
 
     const handleKeyDown = (event) => {
@@ -16,12 +16,17 @@ const KeyEventCapture = () => {
     const handleSend = async () => {
         if (keyEvents.length > 0) {
             try {
+                const payload = {
+                    language: language,
+                    keyEvents: keyEvents,
+                };
                 const response = await fetch('/api/submit-key-events', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify(keyEvents), // 기록된 키 이벤트를 JSON 형식으로 변환하여 전송
+                    body: JSON.stringify(payload), // 기록된 키 이벤트를 JSON 형식으로 변환하여 전송
+                    credentials: 'include',
                 });
 
                 const data = await response.json();

@@ -21,7 +21,7 @@ export async function POST(request) {
       .setExpirationTime('1h')
       .sign(secret);
 
-    const response =NextResponse.json({ message: 'Login successful', token });
+    const response = NextResponse.json({ message: 'Login successful', token });
     response.cookies.set('blind-coding-cat-user-jwt', token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
