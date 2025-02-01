@@ -1,16 +1,14 @@
 'use client'
 
-import { useState } from 'react';
+import { useEffect } from 'react';
 
-const KeyEventCapture = ({ language }) => {
-    const [keyEvents, setKeyEvents] = useState([]);
+const webWorker = new Worker("worker.js"); // Web Worker 생성
 
-    const handleKeyDown = (event) => {
-        // 키 이벤트 기록
-        setKeyEvents((prevEvents) => [
-            ...prevEvents,
-            { key: event.key, timestamp: Date.now() },
-        ]);
+export default KeyEventCapture = (language : any) => {
+
+    const handleKeyDown = (event : any) => {
+        const inputKey = event.key;
+        webWorker.postMessage(inputKey);
     };
 
     const handleSend = async () => {
@@ -56,11 +54,9 @@ const KeyEventCapture = ({ language }) => {
             <button className='button' onClick={handleClear}>Clear Input</button>
             <div className='console'>
                 <h4>Type HERE!!!</h4>
-                <pre style={{ whiteSpace: 'pre-wrap' }}>{JSON.stringify(keyEvents, null, 2)}</pre>
+                {/* <pre style={{ whiteSpace: 'pre-wrap' }}>{JSON.stringify(keyEvents, null, 2)}</pre> */}
             </div>
             <button className='button' onClick={handleSend}>Submit</button>
         </div>
     );
 };
-
-export default KeyEventCapture;

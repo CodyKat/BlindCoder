@@ -79,16 +79,16 @@ def conume_stream():
                         key_events = json.loads(fields.get('keyEvents', '[]'))
                         print(f"Consumer {CONSUMER_NAME} received key events for language '{language}' and username '{username}':", key_events)
                         
-                        process_message(language, username, key_events)
+                        # process_message(language, username, key_events)
 
                         redis_client.xack(STREAM_NAME, CONSUMER_GROUP, message_id)
         except Exception as e:
             print(f"Error consuming stream: {e}")
 
-def process_message(language, username, key_events):
-    code = construct_code_from_key_events(key_events)
-    file_extension = language_extensions.get(language)
-    file_name = f"{username}_{}"
+# def process_message(language, username, key_events):
+#     code = construct_code_from_key_events(key_events)
+#     file_extension = language_extensions.get(language)
+#     file_name = f"{username}_{}"
 
 
 
