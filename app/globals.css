@@ -147,7 +147,7 @@ body {
   background-color: #444444; /* 헤더 배경색 */
 }
 
-.console-input {
+.console {
   height: 400px;
   display: flex;
   flex-direction: column;
@@ -156,7 +156,7 @@ body {
   flex: 1;
 }
 
-.console-input .button {
+.console .button {
   text-align: center;
   border: 1px solid #ddd;
   justify-items: center;
@@ -167,7 +167,7 @@ body {
   background-color: #111111;
 }
 
-.console-input .console {
+.console .console-input {
   text-align: left;
   border: 2px solid #ddd;
   padding: 10px;

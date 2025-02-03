@@ -8,6 +8,7 @@ export async function middleware(req) {
   let payload;
   let username = payload;
 
+  // 나중에 연습문제 만들때 쓸거임
   if (req.nextUrl.pathname.startsWith('/app/problem/sample')) {
     return NextResponse.next();
   }
@@ -58,7 +59,7 @@ export async function middleware(req) {
   //   }
 
   //   // 토큰은 있지만 1.조작되었거나 2.시간이 지났거나 3.풀던 문제가 아닌 문제 페이지로 접근함
-  //   // 1,2.의 경우에는 해당 토큰을 
+  //   // 1,2.의 경우에는 해당 토큰을
 
 
 

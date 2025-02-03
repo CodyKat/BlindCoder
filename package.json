@@ -16,6 +16,7 @@
     "@mongodb-js/zstd": "^1.2.2",
     "@types/next": "^8.0.7",
     "aws4": "^1.13.2",
+    "axios": "^1.7.9",
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
     "gcp-metadata": "^5.3.0",

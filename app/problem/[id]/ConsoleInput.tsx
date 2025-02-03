@@ -1,15 +1,15 @@
 'use client'
+import { useRef, useEffect } from "react";
 
-import { useEffect } from 'react';
+const ConsoleInput = (language : any) => {
+    const consoleWorker = useRef<Worker>();
 
-const webWorker = new Worker("worker.js"); // Web Worker 생성
-
-export default KeyEventCapture = (language : any) => {
-
-    const handleKeyDown = (event : any) => {
-        const inputKey = event.key;
-        webWorker.postMessage(inputKey);
-    };
+    useEffect(() => {
+        consoleWorker.current = new Worker("../consoleWebWorker.ts");
+        return () => {
+            consoleWorker.current?.terminate();
+        }
+    }, [])
 
     const handleSend = async () => {
         if (keyEvents.length > 0) {
@@ -29,7 +29,7 @@ export default KeyEventCapture = (language : any) => {
 
                 const data = await response.json();
                 console.log('Success:', data);
-                setKeyEvents([]); // 전송 후 배열 초기화
+                // setKeyEvents([]); // 전송 후 배열 초기화
             } catch (error) {
                 console.error('Error:', error);
             }
@@ -38,25 +38,20 @@ export default KeyEventCapture = (language : any) => {
         }
     };
 
-    const handleClear = () => {
-        setKeyEvents((prevEvents) => [
-            ...prevEvents,
-            { key: "CLEAR", timestamp: Date.now() },
-        ])
-    }
-
     return (
-        <div className='console-input'
-            onKeyDown={handleKeyDown}
-            tabIndex={0} // 포커스를 받을 수 있도록 설정
-            style={{ border: '1px solid #ddd', padding: '10px', maxWidth: '400px', margin: '20px auto' }}
+        <div className='console'
+        style={{ border: '1px solid #ddd', padding: '10px', maxWidth: '400px', margin: '20px auto' }}
         >
-            <button className='button' onClick={handleClear}>Clear Input</button>
-            <div className='console'>
+            <button className='button' onClick={() => console.log("nnn")}>Clear Input</button>
+            <div className='console-input'
+                tabIndex={0}
+                onKeyDown={(event) => consoleWorker.current?.postMessage(["keydown", event.key])}>
                 <h4>Type HERE!!!</h4>
                 {/* <pre style={{ whiteSpace: 'pre-wrap' }}>{JSON.stringify(keyEvents, null, 2)}</pre> */}
             </div>
-            <button className='button' onClick={handleSend}>Submit</button>
+            <button className='button' onClick={() => consoleWorker.current?.postMessage(["submit", null])}>Submit</button>
         </div>
     );
 };
+
+export default ConsoleInput;

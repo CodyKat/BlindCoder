@@ -1,6 +1,6 @@
 'use client';
 
-import ConsoleInput from "@/app/component/ConsoleInput";
+import ConsoleInput from "./ConsoleInput";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from 'react';
 
